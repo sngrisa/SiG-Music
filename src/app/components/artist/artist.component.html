@@ -1,0 +1,41 @@
+<app-loading *ng="loading"></app-loading>
+<div class="container content">
+    <div class="row my-3" *ngIf="!loading" style="background-color: black;">
+        <div class="col-sm-3">
+            <img [src]="artist.images | noimage" class="img-thumbnail img-circle">
+        </div>
+        <div class="col-sm-3 my-5">
+            <h3>{{artist.name}}</h3>
+            <a [href]="artist?.external_urls?.spotify">Ir a la pagina de Spotify</a>
+        </div>
+        <div class="col-sm-3">
+            <button class="btn btn-outline-danger btn-block" [routerLink]="['/search']"> Regresar </button>
+        </div>
+        <table class="table my-5" *ngIf="topTracks">
+            <thead class="thead text-white" style="background-color: black;">
+                <tr>
+                    <th>Foto</th>
+                    <th>Album</th>
+                    <th>Cancion</th>
+                    <th>Vista Previa</th>
+                </tr>
+            </thead>
+            <tbody class="text-white tbody" style="background-color: black;" *ngFor="let track of topTracks;">
+                <tr>
+                    <td>
+                        <img [src]="track.album.images | noimage" class="img-thumb">
+                    </td>
+                    <td>
+                        {{track.album.name}}
+                    </td>
+                    <td>
+                        {{track.name}}
+                    </td>
+                    <td>
+                        <audio [src]="track.preview_url" controls></audio>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

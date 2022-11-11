@@ -1,0 +1,5 @@
+<div class="container">
+    <input type="text" class="form-control" #BusquedaTexto placeholder="Buscar Artista" (keyup)="buscar(BusquedaTexto.value)">
+</div>
+<app-loading *ngIf="loading"></app-loading>
+<app-tarjetas *ngIf="!loading" [items]="artists"></app-tarjetas>
